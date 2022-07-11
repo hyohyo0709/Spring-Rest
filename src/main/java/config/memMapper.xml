@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mem">
+
+	<select id="all" resultType="dto.MemDTO">
+		select * from mem
+		order by num
+		desc
+	</select>
+
+	<select id="one" resultType="dto.MemDTO" parameterType="int">
+		select * from mem where num=#{num}
+	</select>
+
+	<select id="search" resultType="dto.MemDTO" parameterType="dto.MemDTO">
+		select * from mem
+		where num=#{num} and name=#{name}
+	</select>
+
+	<insert id="ins" parameterType="dto.MemDTO">
+		insert into mem
+		values(mem_num_seq.nextval,#{name},#{age},#{loc})
+	</insert>
+	
+	<update id="upt" parameterType="dto.MemDTO">
+	 update mem set  name=#{name}, age=#{age}, loc=#{loc} where num=#{num}
+	</update>
+
+    <delete id="del" parameterType="int">
+	  delete from mem where num=#{num}
+	</delete>
+</mapper>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
